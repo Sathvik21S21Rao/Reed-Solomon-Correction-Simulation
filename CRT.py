@@ -1,24 +1,34 @@
 from EGCD import *
 
-def CRT(coprime_factors : list , a_i : list) -> int:
-    
-    n=1
+def CRT(coprime_factors: list, a_i: list) -> mpz:
+    """
+    Implements the Chinese Remainder Theorem (CRT) for big integers.
+
+    Args:
+        coprime_factors: List of coprime factors (gmpy2.mpz).
+        a_i: List of remainders (gmpy2.mpz).
+
+    Returns:
+        The solution (x) as a gmpy2.mpz integer.
+    """
+
+    n = mpz(1)
     for factor in coprime_factors:
-        n = n*factor
-    
-    N_i = [n/factor for factor in coprime_factors]
+        n = n * factor  # Multiplication with gmpy2
+
+    N_i = [n // factor for factor in coprime_factors]  # Division with gmpy2
     N_i_inverse = []
-    
+
     for i in range(len(coprime_factors)):
-        gcd  , s , t = EGCD().egcd(N_i[i],coprime_factors[i])
+        gcd, s, t = EGCD().egcd(N_i[i], coprime_factors[i])  
         N_i_inverse.append(s)
-    
-    a = 0
-    
+
+    a = mpz(0)  # Initialization with gmpy2
+
     for i in range(len(coprime_factors)):
-        a = a+a_i[i]*N_i[i]*N_i_inverse[i]
-    
-    return int(a)
+        a = a + a_i[i] * N_i[i] * N_i_inverse[i]  # Multiplication and addition with gmpy2
+
+    return a % n  # Modulo operation with gmpy2
 
 # from EGCD import *
 
