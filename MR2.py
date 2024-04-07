@@ -2,6 +2,12 @@
 from sympy.stats import DiscreteUniform
 from arithmeticOps import *
 import time,random
+def generateRandomPrime(x,T):
+    while(True):
+        n=random.randint(2,x)
+        if(Primality(n,T).checkPrimality()):
+            return n
+
 class Primality:
     def __init__(self,x,T):
         self.x=x
@@ -33,5 +39,5 @@ class Primality:
         return True
 
 
-print(Primality(89,100).checkPrimality())
+# print(Primality(561,100).checkPrimality())
 
