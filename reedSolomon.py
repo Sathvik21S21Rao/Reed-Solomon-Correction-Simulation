@@ -1,13 +1,15 @@
 from MR2 import *
+from gmpy2 import mpz
 
 def GlobalSetup(given_u,given_M):
     global k,primes,u,M
-    u=given_u
-    M=given_M
-    k=5 # choice
+    u=mpz(given_u)
+    M=mpz(given_M)
+    k=100 # choice
+    prime_upper_bound=1000000
     primes=[]
     while(len(primes)<k):
-        rand=generateRandomPrime(len(M)*len(M),1000)
+        rand=generateRandomPrime(prime_upper_bound,10)
         if rand not in primes:
             primes.append(rand)
 
@@ -22,6 +24,8 @@ def Transmit(items):
             b.append(i)
 
     return b
+# GlobalSetup(100,1000)
+# print(primes)
 
 
         
