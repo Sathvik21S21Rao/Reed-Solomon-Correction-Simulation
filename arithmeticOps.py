@@ -1,5 +1,9 @@
 
 def Modn(x,n): # x mod n
+    x1=x
+    n1=n
+    x=abs(x)
+
     store=[n] # contains 2^i*n
     while(True):
         n=n+n
@@ -12,6 +16,9 @@ def Modn(x,n): # x mod n
         if(x>=store[i]):
             x=x-store[i]
         i=i-1
+    if(x1<0):
+        if(x!=0):
+            return n1-x
     return x
     
 def removeFactorOf2(n): # n=2^h.t
@@ -45,4 +52,4 @@ def powerModN(x,n,m): # x^n mod m
             c=Modn(c*a,m)
         a=Modn(a*a,m)
     return c
-# print(powerModN(91113,286540,286541))
+print(Modn(-1154,2))
