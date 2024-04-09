@@ -28,7 +28,7 @@ def begcd(a,b):
                 s1 , t1= s1+b2 , t1-a2
             
             s1 >>=1
-            t1 >>=2
+            t1 >>=1
         
         while Modn(b,2)==0:
             b=b>>1
@@ -90,3 +90,10 @@ n , b, r, t = 7, 31, 4, 12
 result = thue(n,b,r,t)
 print(result)
 assert result[0]%n==(b*result[1])%n
+if __name__=="__main__":
+    a , b = 9999999999999999999999999999999999999999988888878 , 1234567890098765432112345123456789009876543211234416
+    # a , b = 23 , 120
+    gcd1 , s , t = begcd(int(a),int(b))
+    gcd2 = s*a + t*b
+    print(gcd1 , s , t)
+    print(gcd2)

@@ -13,10 +13,15 @@ def CRT(coprime_factors: list, a_i: list) -> mpz:
     """
 
     n = mpz(1)
+    N_i = []
     for factor in coprime_factors:
-        n = mpz(n * factor)  # Multiplication with gmpy2
+        a=mpz(1)
+        for  factor1 in coprime_factors:
+           if(factor1!=factor):
+              a=mpz(a*factor1)
+        N_i.append(a)
+        n = mpz(n * factor)
 
-    N_i = [mpz(n // factor) for factor in coprime_factors]  # Division with gmpy2
     N_i_inverse = []
 
     for i in range(len(coprime_factors)):
@@ -26,9 +31,8 @@ def CRT(coprime_factors: list, a_i: list) -> mpz:
     a = mpz(0)  # Initialization with gmpy2
 
     for i in range(len(coprime_factors)):
-        a = mpz(a + a_i[i] * N_i[i] * N_i_inverse[i])  # Multiplication and addition with gmpy2
-
-    return a % n  # Modulo operation with gmpy2
+        a = Modn(mpz(a + a_i[i] * N_i[i] * N_i_inverse[i]),n)  
+    return a  
 
 # from EGCD import *
 
@@ -39,8 +43,8 @@ def test_CRT():
   # Test cases with different coprime factors and remainders
   test_cases = [
       ([3, 5], [2, 3], 8),  # x = 2 (mod 3), x = 3 (mod 5)
-      ([7, 11], [1, 5], -83),  # x = 1 (mod 7), x = 5 (mod 11)
-      ([2, 3, 5], [1, 0, 4], 39),  # x = 1 (mod 2), x = 0 (mod 3), x = 4 (mod 5)
+      ([7, 11], [1, 5], 71),  # x = 1 (mod 7), x = 5 (mod 11)
+      ([2, 3, 5], [1, 0, 4], 9),  # x = 1 (mod 2), x = 0 (mod 3), x = 4 (mod 5)
   ]
 
   for coprime_factors, a_i, expected_result in test_cases:
@@ -53,4 +57,4 @@ def test_CRT():
     #   assert (x % coprime_factors[i]) == a_i[i]
 
 # Run the test function
-# test_CRT()
+test_CRT()
