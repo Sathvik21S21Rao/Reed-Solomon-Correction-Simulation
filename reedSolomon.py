@@ -12,6 +12,10 @@ def GlobalSetup(given_u,given_M):
         rand=generateRandomPrime(prime_upper_bound,10)
         if rand not in primes:
             primes.append(rand)
+            
+def ReedSolomonSend(a):
+    a_i = [a%p for p in primes]
+    Transmit(a_i)
 
 def Transmit(items):
     l=random.randint(0,u*M)
