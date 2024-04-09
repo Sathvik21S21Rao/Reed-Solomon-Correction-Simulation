@@ -1,4 +1,4 @@
-from EGCD import *
+from BEGCD import *
 
 def CRT(coprime_factors: list, a_i: list) -> mpz:
     """
@@ -20,7 +20,7 @@ def CRT(coprime_factors: list, a_i: list) -> mpz:
     N_i_inverse = []
 
     for i in range(len(coprime_factors)):
-        gcd, s, t = EGCD().egcd(N_i[i], coprime_factors[i])  
+        gcd, s, t = begcd(N_i[i], coprime_factors[i])  
         N_i_inverse.append(mpz(s))
 
     a = mpz(0)  # Initialization with gmpy2
