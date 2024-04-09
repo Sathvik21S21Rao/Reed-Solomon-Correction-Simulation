@@ -29,6 +29,7 @@ def begcd(a,b):
             
             s1 >>=1
             t1 >>=1
+            assert s1*a2+t1*b2==a
         
         while Modn(b,2)==0:
             b=b>>1
@@ -37,6 +38,7 @@ def begcd(a,b):
             
             s2 >>=1
             t2 >>=1
+            assert s2*a2+t2*b2==b
              
         if a > b:
             a, b = b, a
@@ -50,14 +52,6 @@ def begcd(a,b):
         opt_r.append(a*power(2,e))
         opt_s.append(s1)
         opt_t.append(t1)
-        # print(s1*a2+t1*b2==r1)
-        # print(s2*a2+t2*b2==r2)
-        
-        # r1, s1, t1, r2, s2, t2 = r, s, t, r2, s2, t2
-        # print(r1 , s1 , t1)
-        # print(r2 , s2 , t2)
-        
-    
     
     return [a * power(2,e),s1,t1]
         
@@ -66,8 +60,8 @@ def thue(n,b,r,t):
     result = begcd(n,b)
     j=-1
     
-    if r > n or n > r*t:
-        raise Exception("Incorrect values of n , b , r* , t*")
+    # if r > n or n > r*t:
+    #     raise Exception("Incorrect values of n , b , r* , t*")
     
     for i in range(len(opt_r)):
         if opt_r[i] < r:
@@ -79,20 +73,8 @@ def thue(n,b,r,t):
     else:
         raise Exception("Couldn't find rj < r*") 
         
-# a , b = 9999999999999999999999999999999999999999988888878 , 1234567890098765432112345123456789009876543211234416
-# # a , b = 23 , 120
-# gcd1 , s , t = begcd(int(a),int(b))
-# gcd2 = s*a + t*b
-# print(gcd1 , s , t)
-# print(gcd2)
-
-n , b, r, t = 7, 31, 4, 12
-result = thue(n,b,r,t)
-print(result)
-assert result[0]%n==(b*result[1])%n
 if __name__=="__main__":
     a , b = 9999999999999999999999999999999999999999988888878 , 1234567890098765432112345123456789009876543211234416
-    # a , b = 23 , 120
     gcd1 , s , t = begcd(int(a),int(b))
     gcd2 = s*a + t*b
     print(gcd1 , s , t)
