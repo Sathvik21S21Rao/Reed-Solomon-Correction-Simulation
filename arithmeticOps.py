@@ -74,4 +74,5 @@ def division(x,y):
             q=m+1
         else:
             return m
-print(division(100000,12312)==100000//12312)
+if __name__=="__main":
+    print(division(100000,12312)==100000//12312)

@@ -39,7 +39,7 @@ class ReedSolomonSimulation:
         l=random.randint(0,int(self.u*self.k))
         print("L:",l)
         self.P_upper_bound=1
-        for i in range(l-1):
+        for i in range(l):
             self.P_upper_bound*=self.primes[-(1+i)]
 
         self.n=2*self.M*self.P_upper_bound*self.P_upper_bound+100 # n>2MP^2
@@ -72,8 +72,8 @@ class ReedSolomonSimulation:
             raise Exception("Cannot recover the message")
 if __name__=="__main__":
     rs=ReedSolomonSimulation()
-    rs.GlobalSetup(0.2,100000000000)
-    rs.ReedSolomonSend(99999999)
+    rs.GlobalSetup(0.5,100000000000)
+    rs.ReedSolomonSend(99999999999)
     print(rs.ReedSolomonReceive())
 
 
