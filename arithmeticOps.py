@@ -12,9 +12,11 @@ def Modn(x,n): # x mod n
         else:
             break
     i=len(store)-1
+   
     while(i!=-1):
         if(x>=store[i]):
             x=x-store[i]
+            
         i=i-1
     if(x1<0):
         if(x!=0):
@@ -52,4 +54,25 @@ def powerModN(x,n,m): # x^n mod m
             c=Modn(c*a,m)
         a=Modn(a*a,m)
     return c
-print(Modn(-1154,2))
+def division(x,y):
+    if(x<y):
+        return 0
+    x=x-Modn(x,y)
+    q=1
+    end=2
+    while(y*end<x):
+        temp=end+1
+        end=end+(end-q+1)*2
+        q=temp 
+
+    while(q<=end):
+        
+        m=(q+end)>>1
+        if(y*m>x):
+            end=m-1
+        elif(x>y*m):
+            q=m+1
+        else:
+            return m
+if __name__=="__main":
+    print(division(100000,12312)==100000//12312)
