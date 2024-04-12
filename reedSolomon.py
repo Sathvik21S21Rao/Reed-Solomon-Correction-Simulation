@@ -1,16 +1,16 @@
-from MR2 import *
+from HelperFunctions.MR2 import *
 from gmpy2 import mpz
-from CRT import CRT
-from BEGCD import *
+from HelperFunctions.CRT import CRT
+from HelperFunctions.BEGCD import *
 from functools import reduce
-from EGCD import *
-from Thues import thue
+from HelperFunctions.EGCD import *
+from HelperFunctions.Thues import thue
 class ReedSolomonSimulation:
     def GlobalSetup(self,given_u,given_M):
         
         self.u=given_u
         self.M=mpz(given_M)
-        self.k=20 # choice
+        self.k=log2(self.M)
         prime_upper_bound=10000
         self.primes=[]
         while(len(self.primes)<self.k):
@@ -37,12 +37,10 @@ class ReedSolomonSimulation:
     def _Transmit(self,items):
         
         l=random.randint(0,int(self.u*self.k))
-        print("L:",l)
+        
         self.P_upper_bound=1
         for i in range(l):
-            self.P_upper_bound*=self.primes[-(1+i)]
-
-        self.n=2*self.M*self.P_upper_bound*self.P_upper_bound+100 # n>2MP^2
+            self.P_upper_bound*=mpz(self.primes[-(1+i)])
 
         I=random.sample(range(0,self.k),l)
         self.b_i=[]
@@ -60,7 +58,8 @@ class ReedSolomonSimulation:
             raise Exception("No data was transmitted")
         
         self.recovered_message=CRT(self.primes,self.b_i)
-        self.n=reduce(lambda x,y:x*y,self.primes)
+       
+        self.n=mpz(reduce(lambda x,y:x*y,self.primes))
 
         assert self.n>2*self.M*self.P_upper_bound*self.P_upper_bound
         
@@ -72,9 +71,12 @@ class ReedSolomonSimulation:
             raise Exception("Cannot recover the message")
 if __name__=="__main__":
     rs=ReedSolomonSimulation()
-    rs.GlobalSetup(0.5,100000000000)
-    rs.ReedSolomonSend(99999999999)
+    import time
+  
+    rs.GlobalSetup(0.1,10000)
+    rs.ReedSolomonSend(999)    
     print(rs.ReedSolomonReceive())
+  
 
 
         
