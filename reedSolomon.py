@@ -39,7 +39,7 @@ class ReedSolomonSimulation:
         l=random.randint(0,int(self.u*self.k))
         
         self.P_upper_bound=1
-        for i in range(l):
+        for i in range(l+2):
             self.P_upper_bound*=mpz(self.primes[-(1+i)])
 
         I=random.sample(range(0,self.k),l)
@@ -62,9 +62,10 @@ class ReedSolomonSimulation:
         self.n=mpz(reduce(lambda x,y:x*y,self.primes))
 
         assert self.n>2*self.M*self.P_upper_bound*self.P_upper_bound
-        
+        print(self.n,self.recovered_message,self.M*self.P_upper_bound,self.P_upper_bound)
         result=thue(self.n,self.recovered_message,self.M*self.P_upper_bound,self.P_upper_bound)
-        
+        print(abs(result[1])<self.P_upper_bound)
+        print(result)
         if(Modn(result[0],result[1])==0):
             return division(result[0],result[1])
         else:
@@ -73,7 +74,7 @@ if __name__=="__main__":
     rs=ReedSolomonSimulation()
     import time
   
-    rs.GlobalSetup(0.1,10000)
+    rs.GlobalSetup(0.1,1000000)
     rs.ReedSolomonSend(999)    
     print(rs.ReedSolomonReceive())
   
