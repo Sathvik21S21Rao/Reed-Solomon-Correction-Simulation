@@ -65,18 +65,23 @@ class ReedSolomonSimulation:
         # print(self.n,self.recovered_message,self.M*self.P_upper_bound,self.P_upper_bound)
         result=thue(self.n,self.recovered_message,self.M*self.P_upper_bound,self.P_upper_bound)
         # print(abs(result[1])<self.P_upper_bound)
-        # print(result)
+       
         if(Modn(result[0],result[1])==0):
             return division(result[0],result[1])
         else:
             raise Exception("Cannot recover the message")
 if __name__=="__main__":
     rs=ReedSolomonSimulation()
-    import time
-  
-    rs.GlobalSetup(0.1,1000000)
-    rs.ReedSolomonSend(999)    
-    print(rs.ReedSolomonReceive())
+ 
+    rs.GlobalSetup(0.7,100000000999) #setting up the global parameters
+
+    rs.ReedSolomonSend(int(input("Enter number to send:")))
+    try:
+        print("Received message is",rs.ReedSolomonReceive())  
+    except Exception as e:
+        print("Could not recover message")
+    
+    
   
 
 
