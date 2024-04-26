@@ -73,7 +73,7 @@ class ReedSolomonSimulation:
 if __name__=="__main__":
     rs=ReedSolomonSimulation()
  
-    rs.GlobalSetup(0.7,100000000999) #setting up the global parameters
+    rs.GlobalSetup(0.7,1000000) #setting up the global parameters
 
     rs.ReedSolomonSend(int(input("Enter number to send:")))
     try:
