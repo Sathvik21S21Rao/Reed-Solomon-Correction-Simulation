@@ -3,7 +3,7 @@ from gmpy2 import mpz
 from HelperFunctions.CRT import CRT
 from HelperFunctions.BEGCD import *
 from functools import reduce
-from HelperFunctions.EGCD import *
+
 from HelperFunctions.Thues import thue
 class ReedSolomonSimulation:
     def GlobalSetup(self,given_u,given_M):
@@ -62,10 +62,10 @@ class ReedSolomonSimulation:
         self.n=mpz(reduce(lambda x,y:x*y,self.primes))
 
         assert self.n>2*self.M*self.P_upper_bound*self.P_upper_bound
-        print(self.n,self.recovered_message,self.M*self.P_upper_bound,self.P_upper_bound)
+        # print(self.n,self.recovered_message,self.M*self.P_upper_bound,self.P_upper_bound)
         result=thue(self.n,self.recovered_message,self.M*self.P_upper_bound,self.P_upper_bound)
-        print(abs(result[1])<self.P_upper_bound)
-        print(result)
+        # print(abs(result[1])<self.P_upper_bound)
+        # print(result)
         if(Modn(result[0],result[1])==0):
             return division(result[0],result[1])
         else:
