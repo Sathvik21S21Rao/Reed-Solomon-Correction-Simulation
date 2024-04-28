@@ -73,12 +73,13 @@ class ReedSolomonSimulation:
 if __name__=="__main__":
     rs=ReedSolomonSimulation()
  
-    rs.GlobalSetup(0.7,1000000) #setting up the global parameters
+    rs.GlobalSetup(0.3,10**10) #setting up the global parameters
 
     rs.ReedSolomonSend(int(input("Enter number to send:")))
     try:
         print("Received message is",rs.ReedSolomonReceive())  
     except Exception as e:
+        
         print("Could not recover message")
     
     

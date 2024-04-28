@@ -22,24 +22,17 @@ def CRT(coprime_factors: list, a_i: list) -> mpz:
     n = mpz(1)
     N_i = []
     for factor in coprime_factors:
-        a=mpz(1)
-        for  factor1 in coprime_factors:
-           if(factor1!=factor):
-              a=mpz(a*factor1)
-        N_i.append(a)
         n = mpz(n * factor)
+    for factor in coprime_factors:
+       N_i.append(division(n,factor))
 
-    N_i_inverse = []
-    
-    for i in range(len(coprime_factors)):
-        gcd, s, t = begcd(N_i[i], coprime_factors[i])  
-        N_i_inverse.append(mpz(s))
+    N_i_inverse = [mpz(begcd(N_i[i], coprime_factors[i])[1]) for i in range(len(coprime_factors))]
     
     a = mpz(0)  # Initialization with gmpy2
 
     for i in range(len(coprime_factors)):
         a = Modn(mpz(a + a_i[i] * N_i[i] * N_i_inverse[i]),n)  
-    return a  
+    return a
 
 # from EGCD import *
 

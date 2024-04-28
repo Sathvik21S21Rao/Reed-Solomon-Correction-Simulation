@@ -21,8 +21,8 @@ def begcd(a,b):
         e+=1
         a = a>>1
         b = b>>1
-       
-        
+    
+    
     
     a2 , b2 = a , b
     s1, s2 = 1, 0
