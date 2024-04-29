@@ -71,6 +71,30 @@ To use the Reed-Solomon simulation:
 4. Use the `ReedSolomonSend` method to transmit data by providing the message as input.
 5. Call the `ReedSolomonReceive` method to receive the transmitted message. This method returns the recovered message.
 
+## Running the Reed-Solomon Simulation
+
+### Prerequisites
+- **Python**: Make sure you have Python installed on your system. You can download Python from the [official website](https://www.python.org/downloads/).
+- **Dependencies**: The simulation relies on the `gmpy2` library. Install it using pip:
+
+
+### Steps
+1. **Navigate to the Project Directory**: Open a terminal or command prompt and navigate to the directory containing the Reed-Solomon simulation file (`ReedSolomon.py`).
+
+2. **Run the File**: Execute the simulation file using the Python interpreter:
+
+
+3. **Follow the Instructions**: The simulation will prompt you to enter a number to send. Enter the desired number and press Enter.
+
+4. **View the Output**: If the simulation successfully recovers the message, it will display the received message. If not, it will indicate that the message could not be recovered.
+
+# Contributors
+
+- Shreyas
+- Sathvik
+
+
+
 Example Usage:
 ```python
 from ReedSolomon import ReedSolomonSimulation
