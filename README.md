@@ -1,10 +1,5 @@
 # Reed-Solomon-Correction-Simulation
 
-## Contributors
-
-- Shreyas IMT2022006
-- Sathvik IMT2022082
-
 ## Reed-Solomon Simulation Overview
 
 The Reed-Solomon simulation emulates a coding scheme widely used in error correction and data transmission applications. It operates based on Reed-Solomon codes, which are a class of error-correcting codes used for data transmission over noisy channels, such as in satellite communication, digital television, and storage systems like CDs, DVDs, and Blu-ray discs.
